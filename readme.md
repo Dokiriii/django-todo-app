@@ -22,11 +22,15 @@
 
 Подробная методичка по разработке: [docs/ToDoList_Django.pdf](docs/ToDoList_Django.pdf)
 
+## Автор
+
+Dokiriii (Eula)
+
 ## Установка
 
 ```bash
 # Клонируем репозиторий
-git clone https://github.com/твой-ник/django-todo-app.git
+git clone https://github.com/Dokiriii/django-todo-app.git
 cd django-todo-app
 
 # Создаём виртуальное окружение
@@ -44,7 +48,3 @@ python manage.py createsuperuser
 
 # Запускаем сервер
 python manage.py runserver
-
-## Автор
-
-Dokiriii (Eula)
