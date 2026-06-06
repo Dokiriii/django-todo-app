@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ task.title }} | Todo List</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'tasks/style.css' %}">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Навигация (как на home) -->
+        <!-- Навигация + шапка -->
+        <div class="welcome-section">
+            <h1>📋 Детали задачи «{{ task.title }}»</h1>
+            <p>Просмотр и управление</p>
+        </div>
+
+        <div class="nav">
+            <a href="{% url 'home' %}">← Все задачи</a>
+            <a href="{% url 'pending' %}">Невыполненные</a>
+            <a href="{% url 'completed' %}">Выполненные</a>
+            <a href="{% url 'profile' %}">👤 Профиль</a>
+            <div class="user-info">
+                <a href="{% url 'logout' %}">🚪 Выйти</a>
+            </div>
+        </div>
+
+        <!-- Детали задачи (используем класс .task как на главной) -->
+        <div class="task">
+            <h3>
+                {{ task.title }}
+                {% if task.completed %}
+                    <span class="status-badge status-completed">✓ Выполнено</span>
+                {% else %}
+                    <span class="status-badge status-pending">○ В процессе</span>
+                {% endif %}
+            </h3>
+            
+            {% if task.description %}
+                <p>{{ task.description }}</p>
+            {% endif %}
+            
+            <div class="task-meta">
+                <span class="task-date">📅 Создано: {{ task.created_at|date:"d.m.Y H:i" }}</span>
+                <div class="task-actions">
+                    <button onclick="openEditModal('{{ task.id }}', '{{ task.title }}', '{{ task.description|escapejs }}')" class="btn-edit">
+                        ✏️ Редактировать
+                    </button>
+                    <form action="{% url 'complete_task' %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="task_id" value="{{ task.id }}">
+                        <button type="submit" class="btn-complete">
+                            {% if task.completed %}🔄 Вернуть в работу{% else %}✅ Выполнить{% endif %}
+                        </button>
+                    </form>
+                    <form action="{% url 'delete_task' %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="task_id" value="{{ task.id }}">
+                        <button type="submit" class="btn-delete">🗑 Удалить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Кнопка назад -->
+        <div style="margin-top: 24px; text-align: center;">
+            <a href="{% url 'home' %}" style="color: #667eea; text-decoration: none;">← Вернуться к списку задач</a>
+        </div>
+    </div>
+
+    <!-- Модальное окно редактирования -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3>✏️ Редактировать задачу</h3>
+            <form action="{% url 'edit_task' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="task_id" id="modal_task_id">
+                <label>Название</label>
+                <input type="text" name="name" id="modal_name">
+                <label>Описание</label>
+                <input type="text" name="description" id="modal_desc">
+                <button type="submit">💾 Сохранить изменения</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+    function openEditModal(id, title, desc) {
+        document.getElementById("modal_task_id").value = id;
+        document.getElementById("modal_name").value = title;
+        document.getElementById("modal_desc").value = desc;
+        document.getElementById("myModal").style.display = "block";
+    }
+    function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == document.getElementById("myModal")) {
+            closeModal();
+        }
+    }
+    </script>
+</body>
+</html>

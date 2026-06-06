@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Регистрация | Todo List</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'accounts/auth.css' %}">
+</head>
+<body>
+    <div class="auth-card">
+        <div class="auth-header">
+            <h1>📝 Регистрация</h1>
+            <p>Создайте аккаунт</p>
+        </div>
+        <div class="auth-body">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="auth-btn">Зарегистрироваться</button>
+            </form>
+            <div class="auth-footer">
+                <p>Уже есть аккаунт? <a href="{% url 'login' %}">Войти</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,713 @@
+/* Базовые стили и фон */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+/* Центрированный белый контейнер */
+.app-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 32px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    padding: 40px;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 600px) {
+    body {
+        padding: 20px;
+    }
+    .app-container {
+        padding: 24px;
+        border-radius: 24px;
+    }
+}
+
+/* Шапка с приветствием */
+.welcome-section {
+    text-align: center;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid #f0f2f5;
+}
+
+.welcome-section h1 {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 8px;
+}
+
+.welcome-section p {
+    color: #6c757d;
+    font-size: 14px;
+}
+
+/* Навигация */
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #eef2f6;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #4a5568;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+}
+
+.nav a:hover {
+    background: #f0f2f5;
+    color: #667eea;
+}
+
+.nav .user-info {
+    margin-left: auto;
+    color: #6c757d;
+    font-size: 14px;
+}
+
+/* Форма создания задачи */
+.form-card {
+    background: #f8f9fc;
+    border-radius: 20px;
+    padding: 24px;
+    margin-bottom: 32px;
+}
+
+.form-card h2 {
+    font-size: 18px;
+    margin-bottom: 16px;
+    color: #2d3748;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.btn-submit {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    width: 100%;
+}
+
+.btn-submit:hover {
+    opacity: 0.9;
+}
+
+/* Статистика */
+.stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding: 12px 16px;
+    background: #f8f9fc;
+    border-radius: 16px;
+}
+
+.stats-count {
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.profile-link {
+    color: #667eea;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Список задач */
+.tasks-list {
+    margin-top: 24px;
+}
+
+.tasks-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #2d3748;
+}
+
+.task {
+    background: white;
+    border: 1px solid #eef2f6;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 16px;
+    transition: all 0.2s ease;
+}
+
+.task:hover {
+    border-color: #e2e8f0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.task.completed h3 a {
+    text-decoration: line-through;
+    color: #a0aec0;
+}
+
+.task h3 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+}
+
+.task h3 a {
+    text-decoration: none;
+    color: #2d3748;
+    font-weight: 600;
+}
+
+.task h3 a:hover {
+    color: #667eea;
+}
+
+.task p {
+    color: #718096;
+    font-size: 14px;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.task-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #f0f2f5;
+}
+
+.task-date {
+    font-size: 12px;
+    color: #a0aec0;
+}
+
+.task-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.task-actions button {
+    background: #f1f3f5;
+    color: #4a5568;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.task-actions button:hover {
+    background: #e2e8f0;
+}
+
+.task-actions .btn-complete {
+    background: #e6f7e6;
+    color: #2e7d32;
+}
+
+.task-actions .btn-complete:hover {
+    background: #c8e6c9;
+}
+
+.task-actions .btn-delete {
+    background: #fee2e2;
+    color: #c62828;
+}
+
+.task-actions .btn-delete:hover {
+    background: #ffcdd2;
+}
+
+/* Статус бейджи */
+.status-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    margin-left: 8px;
+}
+
+.status-completed {
+    background: #e6f7e6;
+    color: #2e7d32;
+}
+
+.status-pending {
+    background: #fff3e0;
+    color: #ed6c02;
+}
+
+/* Сообщения */
+.messages {
+    margin: 16px 0;
+}
+
+.message {
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.message-success {
+    background: #e6f7e6;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+}
+
+.message-error {
+    background: #fee2e2;
+    color: #c62828;
+    border: 1px solid #ffcdd2;
+}
+
+/* Модальное окно */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 28px;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 24px;
+    position: relative;
+    animation: modalFadeIn 0.2s ease;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close-btn {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    cursor: pointer;
+    font-size: 28px;
+    color: #a0aec0;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: #2d3748;
+}
+
+.modal-content h3 {
+    margin-bottom: 20px;
+    color: #2d3748;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 12px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    margin: 8px 0 16px;
+    font-family: inherit;
+}
+
+.modal-content button {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Пустое состояние */
+.empty-state {
+    text-align: center;
+    padding: 48px 24px;
+    color: #a0aec0;
+}
+
+.empty-state p {
+    margin-bottom: 16px;
+}
+
+.empty-state a {
+    color: #667eea;
+    text-decoration: none;
+}
+
+/* Стили профиля*/
+/* ===== СТРАНИЦА ПРОФИЛЯ ===== */
+.profile-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 32px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+}
+
+.profile-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 40px 30px;
+    text-align: center;
+}
+
+.profile-header h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.profile-header p {
+    margin: 12px 0 0;
+    opacity: 0.9;
+    font-size: 14px;
+}
+
+.profile-stats {
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    text-align: center;
+}
+
+.stat-card {
+    background: #f8f9fc;
+    padding: 20px;
+    border-radius: 20px;
+    transition: transform 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+}
+
+.stat-number {
+    font-size: 32px;
+    font-weight: 800;
+    color: #2d3748;
+}
+
+.stat-label {
+    color: #718096;
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.progress-section {
+    padding: 0 30px 30px;
+}
+
+.progress-bar-container {
+    background: #e9ecef;
+    border-radius: 12px;
+    height: 12px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, #28a745, #20c997);
+    height: 100%;
+    width: 0%;
+    transition: width 0.5s ease;
+    border-radius: 12px;
+}
+
+.progress-text {
+    text-align: center;
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #2d3748;
+}
+
+.profile-info {
+    padding: 0 30px 30px;
+    border-top: 1px solid #eef2f6;
+    margin-top: 10px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid #f0f2f5;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    font-weight: 600;
+    color: #4a5568;
+    font-size: 14px;
+}
+
+.info-value {
+    color: #2d3748;
+    font-size: 14px;
+}
+
+.profile-actions {
+    padding: 0 30px 30px;
+    display: flex;
+    gap: 15px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 20px;
+    text-decoration: none;
+    border-radius: 12px;
+    text-align: center;
+    flex: 1;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: #f1f3f5;
+    color: #4a5568;
+}
+
+.btn-secondary:hover {
+    background: #e2e8f0;
+}
+
+.email-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.email-input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.email-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.btn-save {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.btn-save:hover {
+    opacity: 0.9;
+}
+
+.message {
+    padding: 10px 15px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.message-success {
+    background: #e6f7e6;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+}
+
+/* ===== ПРОФИЛЬ: ФОРМА EMAIL ===== */
+.email-form {
+    display: flex;
+    gap: 10px;
+    margin: 0;
+}
+
+.email-input {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.email-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.email-save-btn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.email-save-btn:hover {
+    opacity: 0.9;
+}
+
+.info-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 14px 0;
+    border-bottom: 1px solid #f0f2f5;
+}
+
+.info-label {
+    font-weight: 600;
+    color: #4a5568;
+    font-size: 14px;
+    min-width: 70px;
+}
+
+.info-value {
+    color: #2d3748;
+    font-size: 14px;
+}
+
+/* ===== ПЕРЕНОС ДЛИННЫХ СЛОВ ===== */
+.task p,
+.task-description,
+.task-detail-description p,
+.task h3 a,
+.task-title,
+.task-detail-title {
+    word-wrap: break-word;        /* Перенос длинных слов */
+    overflow-wrap: break-word;    /* Современный аналог */
+    white-space: normal;          /* Обычный перенос (не nowrap) */
+    word-break: break-word;       /* Разрываем длинные слова */
+    max-width: 100%;              /* Не вылезаем за контейнер */
+}
+
+/* Дополнительно для карточек задач */
+.task {
+    overflow: hidden;             /* Скрываем лишнее (но с переносом не понадобится) */
+}
+
+/* Для модального окна */
+.modal-content input,
+.modal-content textarea {
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+/* Перенос длинного заголовка в шапке */
+.welcome-section h1 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+    max-width: 100%;
+}
+
+/* Перенос длинного заголовка в теле задачи */
+.task h3 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+    max-width: 100%;
+}

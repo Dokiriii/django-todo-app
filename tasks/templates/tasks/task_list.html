@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }} | Todo List</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'tasks/style.css' %}">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Заголовок -->
+        <div class="welcome-section">
+            <h1>{{ title }}</h1>
+            <p>Всего задач: {{ tasks_count }}</p>
+        </div>
+
+        <!-- Навигация -->
+        <div class="nav">
+            <a href="{% url 'home' %}">Все задачи</a>
+            <a href="{% url 'pending' %}">Невыполненные</a>
+            <a href="{% url 'completed' %}">Выполненные</a>
+            <div class="user-info">
+                <a href="{% url 'profile' %}">👤 Профиль</a>
+            </div>
+        </div>
+
+        <!-- Список задач -->
+        <div class="tasks-list">
+            {% if tasks %}
+                {% for task in tasks %}
+                    <div class="task {% if task.completed %}completed{% endif %}">
+                        <h3>
+                            <a href="{% url 'task_detail' task.id %}">{{ task.title }}</a>
+                            {% if task.completed %}
+                                <span class="status-badge status-completed">✓ Выполнено</span>
+                            {% else %}
+                                <span class="status-badge status-pending">○ В процессе</span>
+                            {% endif %}
+                        </h3>
+                        {% if task.description %}
+                            <p>{{ task.description }}</p>
+                        {% endif %}
+                        <div class="task-meta">
+                            <span class="task-date">📅 {{ task.created_at|date:"d.m.Y H:i" }}</span>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="empty-state">
+                    <p>✨ Нет задач в этой категории</p>
+                    <a href="{% url 'home' %}">Создать новую задачу</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
